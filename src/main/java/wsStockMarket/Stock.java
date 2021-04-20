@@ -5,11 +5,13 @@ import java.util.ArrayList;
 public class Stock implements Subject {
 	private ArrayList<Observer> observers;
 	private String tipo;
-	
-
+	StockMarket mercado_acciones;
+	Double precio_inicial;
 
 	public Stock(String tipo, double precio_inicial, StockMarket mercado_acciones) {
 		this.tipo = tipo;
+		this.mercado_acciones = mercado_acciones;
+		this.precio_inicial = precio_inicial;
 		observers=new ArrayList<>();
 
 	}
