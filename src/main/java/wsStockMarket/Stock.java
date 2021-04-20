@@ -3,41 +3,32 @@ package wsStockMarket;
 import java.util.ArrayList;
 
 public class Stock implements Subject {
-	private ArrayList<Observer> observers;
-	private String tipo;
+	String tipo; // Nombre del stock
 	StockMarket mercado_acciones;
-	Double precio_inicial;
+	ArrayList<Observer> observers;
+	double precio;
 
 	public Stock(String tipo, double precio_inicial, StockMarket mercado_acciones) {
-		this.tipo = tipo;
 		this.mercado_acciones = mercado_acciones;
-		this.precio_inicial = precio_inicial;
-		observers=new ArrayList<>();
-
+		this.precio = precio_inicial;
+		this.tipo = tipo;
+		observers = new ArrayList<>();
 	}
-	public void registerObserver(Observer o){
+
+	@Override
+	public void registerObservers(Observer o) {
 		observers.add(o);
 	}
 
-	public void removeObserver(Observer o){
-		int i = observers.indexOf(o);
-		if (i >= 0) {
-			observers.remove(i);
-		}
-
-	}
-
-	public String notifyObservers(Observer trader, String operacion, Double precio) { 
-		String trans = "";
-		if(trader instanceof Trader){
-			for(Observer o: observers){
-				trans = trans + o.getName() + ":The latest trade is Trader:"+ trader.getName()+" "+ operacion +" $" + precio + " Stock: "+ this.tipo+"\n";
+	@Override
+	public String notifyObservers(Observer trader, String tipoTransaccion, Double precio) {
+		String transaccion="";
+		if (trader instanceof Trader) {
+			for (Observer observer : observers) {
+				transaccion += observer.getName() + ":The latest trade is Trader:"+ trader.getName()+" "+ tipoTransaccion
+						+" $"+precio+ " Stock: "+ this.tipo+"\n";
 			}
-
 		}
-		trans = trans.substring(0,trans.length()- 1); 
-		return trans;
-		
+		return transaccion.substring(0,transaccion.length()- 1);
 	}
-	
 }
