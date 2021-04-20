@@ -1,15 +1,17 @@
 package wsStockMarket;
 
 public class StockMarket {
+	
+	public StockMarket() {
 
+	}
 	public void register(Trader t, Stock s) {
-		s.registerObservers(t);
+		s.registerObserver(t);
 	}
 
-	public String trade(Trader t, Stock s, String tipoTransaccion, double precio) {
-		t.update(s, tipoTransaccion, precio);
-		String TransactionLog = s.notifyObservers(t, tipoTransaccion, precio);
-		return TransactionLog;
+	public String trade(Trader t, Stock s, String operacion, double precio) {
+		t.update(s,operacion,precio);
+		return s.notifyObservers(t, operacion, precio);
 	}
-
+    
 }

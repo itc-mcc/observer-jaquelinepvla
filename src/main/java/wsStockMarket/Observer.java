@@ -1,5 +1,8 @@
 package wsStockMarket;
 
+
 public interface Observer {
-    String getName();
+	public void update(Subject o, String a, Double precio);
+	public String getName();
+
 }
