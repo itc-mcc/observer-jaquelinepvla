@@ -26,9 +26,15 @@ dependencies {
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.13'
+    //testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
+    //testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
 }
 
 application {
     // Define the main class for the application.
     mainClassName = 'wsStockMarket.App'
+}
+
+test{
+    useJUnitPlataform()
 }

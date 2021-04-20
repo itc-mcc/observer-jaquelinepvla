@@ -1,15 +1,8 @@
 package wsStockMarket;
 
 public interface Subject {
-	public void attach(Observer o){
-
-	}
-
-	public void detach(Observer o){
-
-	}
-	public void notifyObservers(){
-		
-	}
+	public void registerObserver(Observer o);
+	public void removeObserver(Observer o);
+	public String notifyObservers(Observer trader, String Opercacion, Double precio);
 
 }
